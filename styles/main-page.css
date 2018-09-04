@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'Proximanova';
+    src: url('../fonts/ProximaNova-Regular.eot'),
+            url('../fonts/ProximaNova-Regular.ttf'),
+            url('../fonts/ProximaNova-Regular.woff');
+	
+}
+
+*{ 
+    font-family:'Proximanova';
+}
+
+body, html{
+    height:100%;
+    margin: 0;
+}
+
+body input{border:none}
+
+#app{
+    height: 100%;
+    background: #ffffff;
+} 
+
+#app_board-add-form{
+    display: none;
+}
+        /* основной контейнер */
+
+#app__main-boards-container{
+    display: flex;
+    flex-direction: column;
+    
+    height: 100%;
+}
+
+        /* форма для создания книг */
+
+
+#app__board-add-form{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: #ffffff;
+    height: 100%;
+}
+
+#board-add-form__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 120px;
+    width: 300px;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    background: #ffffff;
+
+}
+
+        /* форма имени будщей книги */
+
+#board-add-form__board-name{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+}
+
+        /* создание книги */
+
+#board-add-form__create-board{ 
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    background: #54c7c3;
+    color: #ffffff;
+} 
+
+        /* контейнер для книг */
+
+#main-boards-container__bords{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+
+    flex-basis: 95%;
+    overflow: auto;
+}
+
+        /* стили досок */
+
+.board{
+    display: flex;
+    flex-direction: column;
+    
+    width: 250px;
+    margin: 10px;
+    background: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #d4d4d4;
+}
+
+
+
+.board__name-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid #d4d4d4;
+    background: #eef2f4;
+    font-size: 18px;
+    font-weight: 550;
+    text-align: center;
+    height: 50px;
+}
+
+.board__date{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    height: 100px;
+    padding: 15px;
+}
+
+.board__setbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    height: 30px;
+}
+
+.board__setbar i {
+    font-size: 16px;
+    color: #54c7c3;
+    margin-right:15px;
+    transition: background-color 1s, transform 1s;
+}
+
+.board__setbar i:hover{
+    font-size: 17px;
+    color: #54c7a4;
+    margin-right:15px;
+    transform: rotate(720deg);
+}
+
+        /* мини навигация */
+
+#main-boards-container__navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    flex-basis: 5%;
+    background: #ffffff;
+    border-top: 1px solid #d4d4d4;
+}
+
+#main-boards-container__navbar input{
+    height: 30px;
+    margin-left: 10px;
+    background: #54c7c3;
+    color: #ffffff;
+    border-radius: 5px;
+
+}

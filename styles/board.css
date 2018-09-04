@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Proximanova';
+    src: url('../fonts/ProximaNova-Regular.eot'),
+            url('../fonts/ProximaNova-Regular.ttf'),
+            url('../fonts/ProximaNova-Regular.woff');
+	
+}
+
+*{ 
+    font-family:'Proximanova';
+}
+
+body, html{
+    height:100%;
+    margin: 0;
+}
+
+#board{
+    height: 100%;
+    background: #ffffff;
+}
+
+        /* стили контейнера колонок */
+
+#board__container-columns{
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    padding: 15px;
+
+}
+
+    /* стили колонок */
+
+.column{
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    width: 360px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+}
+
+/* стили строк-контейнеров для задач */

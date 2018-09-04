@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'Proximanova';
+    src: url('../fonts/ProximaNova-Regular.eot'),
+            url('../fonts/ProximaNova-Regular.ttf'),
+            url('../fonts/ProximaNova-Regular.woff');
+	
+}
+
+*{ 
+    font-family:'Proximanova';
+    outline: none;
+}
+
+body, html{
+    height:100%;
+    margin: 0;
+}
+
+body input{border:none}
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+        /* стили контейнера для задачи */
+
+#newtask{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+
+    /* height: 800px; */
+    width: 360px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+}
+
+        /* стили поля ввода с именем */
+
+#newtask__name{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+        /* стиль описания задчи */
+
+#newtask__description{ 
+    border: 1px solid #d4d4d4;
+    max-height: 200px;
+    min-height: 50px;
+    max-width: 339px;
+    min-width: 339px;
+    border-radius: 5px;
+    margin: 15px 0;
+    padding: 10px;
+}
+
+        /* стили списка приоретеов задачи */
+
+#newtask__priority{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    
+
+}
+
+#newtask__priority select{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+        /* стили описания меток задчи */
+
+#newtask__label{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}       
+
+#newtask__label input{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    border-radius: 5px;
+}
+
+        /* стили описания типов задчи */
+
+#newtask__type{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+#newtask__type select{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+        /* Стили описания статуса задчи */
+
+#newtask__status{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+#newtask__status select{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+#newtask__boards-menu{  /* выпадающий список с досками */
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+#newtask__boards-menu select{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+
+#newtask__data-send{ /* описание кнопки создания */
+    height: 40px;
+    /* width: 250px; */
+    border-radius: 5px;
+    background: #54c7c3;
+    color: #ffffff;
+    margin: 15px 0;
+    font-size: 18px;
+}

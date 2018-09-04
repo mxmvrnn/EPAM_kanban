@@ -1,1 +1,0 @@
-# EPAM_kanban
