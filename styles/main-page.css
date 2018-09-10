@@ -115,9 +115,11 @@ body input{border:none}
     justify-content: center;
     align-items: center;
 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     border-bottom: 1px solid #d4d4d4;
     background: #eef2f4;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 550;
     text-align: center;
     height: 50px;
@@ -151,7 +153,7 @@ body input{border:none}
 
 .board__setbar i:hover{
     font-size: 17px;
-    color: #54c7a4;
+    color: #54c791;
     margin-right:15px;
     transform: rotate(720deg);
 }
@@ -175,5 +177,15 @@ body input{border:none}
     background: #54c7c3;
     color: #ffffff;
     border-radius: 5px;
+    font-size: 14px;
+
+}
+#main-boards-container__navbar input:hover{
+    height: 30px;
+    margin-left: 10px;
+    background: #54c791;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 14px;
 
 }

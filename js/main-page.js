@@ -18,7 +18,7 @@ function createBoards(id,name,dataCreate,dataChange){ /* Функция кото
             <span class="board__dste-change"> Дата последнего редактирования : заглушка</span>
         </div>
         <div class="board__setbar">
-            <i class="fas fa-cog"></i>
+            <i class="board-settings fas fa-cog"></i>
             <i class="fas fa-trash-alt"></i>
         </div> 
     `;
@@ -51,9 +51,34 @@ function createBoards(id,name,dataCreate,dataChange){ /* Функция кото
 
 })();
 
+(()=>{ /* переход непосредственно на доску  */
+    
+    containerBoards.addEventListener('click', ()=>{
+        if (!event.target.classList.contains('board-settings')) return;
+        else{
+            let path ='/settings/' + event.target.closest('.board').id.slice(-2);
+            location.href = path;
+        }
+    })
+
+})();
+
+/* (()=>{
+    containerBoards.addEventListener('click',()=>{
+        if (!event.target.classList.contains('board-settings')) return;
+        else {
+            let valueId = event.target.closest('.board').id.slice(-2);
+            let path ='/board/' + valueId + '/settings';
+            location.href = path;
+
+            console.log(path)            
+        }
+    })
+})(); */
+
 (()=>{ /* Функция удаления досок с главной страницы */
     containerBoards.addEventListener('click',()=>{
-        if (!event.target.classList.contains('fa-trash-alt' && 'fas')) return;
+        if (!event.target.classList.contains('fa-trash-alt')) return;
         else {
             let valueId = event.target.closest('.board').id.slice(-2);
 

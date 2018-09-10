@@ -98,6 +98,21 @@ body{
 
         /* стили описания типов задчи */
 
+#newtask__worker{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}       
+
+#newtask__worker input{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    border-radius: 5px;
+}
+
+        /* стили описания типов задчи */
+
 #newtask__type{
     display: flex;
     flex-direction: column;
@@ -148,6 +163,16 @@ body{
     /* width: 250px; */
     border-radius: 5px;
     background: #54c7c3;
+    color: #ffffff;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+#newtask__data-send:hover{ /* описание кнопки создания */
+    height: 40px;
+    /* width: 250px; */
+    border-radius: 5px;
+    background: #54c791;
     color: #ffffff;
     margin: 15px 0;
     font-size: 18px;

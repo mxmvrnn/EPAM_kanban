@@ -22,7 +22,12 @@ app.get('/get-boards', (req,res)=>{ /* Запрос на получаение в
     })  
 });
 
-app.get('/board/:id', (req,res)=>{
+
+app.get('/settings/:id', (req,res)=>{ /* динамическая отрисовка страницы с доской */
+    res.render('settings', {id : req.params.id});
+});
+
+app.get('/board/:id', (req,res)=>{ /* динамическая отрисовка страницы с доской */
     res.render('board', {id : req.params.id});
 });
 
@@ -31,16 +36,11 @@ app.get('/newtask', (req,res)=>{ /* Отрисовка создания зада
 });
 
 app.delete('/delete-boards', (req,res)=>{ /* удаление досок */ 
-    //console.log(req.body.name);
-
-    db.none('DELETE FROM boards WHERE id = $1', req.body.id);     
-    // console.log(req.body);
-    // res.redirect('localhost:5555');
+    db.none('DELETE FROM boards WHERE id = $1', req.body.id);  
 });
 
 app.post('/board-name', (req,res)=>{ /* Добавление новых досок */
     db.none('INSERT INTO boards (board_name , date_creation) VALUES (${name}, ${dataCreate})', req.body);
-
     res.status(200).end();
 });
 
@@ -59,12 +59,32 @@ app.get('/newtask-name-data', (req,res)=>{ /* Запрос имен досок �
 app.post('/newtask_data', (req,res)=>{
     console.log(req.body);
 
-    db.none('INSERT INTO newtask_data (id_board, newtask_name, newtask_discription, newtask_priority, newtask_label, newtask_type, newtask_status )\
-    VALUES (${idkeks}, ${name}, ${discription}, ${priority}, ${label}, ${type}, ${status})', req.body);
+    db.none('INSERT INTO newtask_data (id_board, newtask_name, newtask_discription, newtask_priority, newtask_label, newtask_worker,  newtask_type, newtask_status )\
+    VALUES (${idkeks}, ${name}, ${discription}, ${priority}, ${label}, ${worker}, ${type}, ${status})', req.body);
 
     res.status(200).end();
 });
 
+                            /* Запросы со страницы доски */
+
+app.get('/get-task/:id', (req,res)=>{ /* запрос на задчи, относящиеся к данной доске */
+    // db.multi('SELECT * FROM newtask_data')
+    db.multi('SELECT * FROM newtask_data WHERE id_board = $1 ', req.params.id)
+    .then(function (text){
+        res.json(text)
+    })
+})
+
+app.get('/task/:id', (req,res)=>{ /* запрос на задачу отнросящуюся к доске */
+    db.multi('SELECT * FROM newtask_data WHERE id_task = $1 ', req.params.id)
+    .then(function (text){
+        res.json(text)
+    })
+})
+
+app.put('update-task/', (req,res)=>{ /* Ну типо фиксить данные в задаче, но что то не идет пока */
+    db.map('UPDATE newtask_data SET newtask_name = ${name} WHERE id_task = ${id}', req.body);
+})
 
 app.listen(port, () =>{
     console.log("РАБОТАЕТ ТИПО))))))")

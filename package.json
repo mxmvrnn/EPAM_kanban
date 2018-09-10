@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "name": "",
+  "name": "kanban",
   "version": "",
   "dependencies": {
     "ejs": "^2.6.1",
