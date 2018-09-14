@@ -121,13 +121,13 @@ function filterTask(arr, parent,  status, idPrefics){
             return item.newtask_worker == key;
         });
         subItems.forEach(item => {
-           createTask(item.newtask_name, item.newtask_label, item.newtask_type, item.newtask_worker, item.newtask_status, item.newtask_priority, idRow, item.id_task) 
+           createTask(item.newtask_name, item.newtask_label, item.newtask_discription, item.newtask_type, item.newtask_worker, item.newtask_status, item.newtask_priority, idRow, item.id_task) 
         })
         
     };
 };
 
-function createTask(name, label, type, userIconContent, status, priority, parent, id_task){
+function createTask(name, label, discription, type, userIconContent, status, priority, parent, id_task){
     let rowrow = document.getElementById(parent);
 
     let task = document.createElement('div');    
@@ -162,6 +162,9 @@ function createTask(name, label, type, userIconContent, status, priority, parent
             </div>
             <div class="task__label">
                 <span>Метки: ${label}</span>
+            </div>
+            <div class="task__label">
+                <span>Описание: ${discription}</span>
             </div>
             <div class="task__type">
                 <span>Тип задачи:${type}</span>
