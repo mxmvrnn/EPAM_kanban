@@ -34,7 +34,7 @@ body input{border:none}
     height: 100%;
 }
 
-        /* форма для создания книг */
+        /* форма для создания досок */
 
 
 #app__board-add-form{
@@ -125,6 +125,23 @@ body input{border:none}
     height: 50px;
 }
 
+.board__name-container:hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #d4d4d4;
+    background: #54c791;
+    color: #ffffff; 
+    font-size: 20px;
+    font-weight: 550;
+    text-align: center;
+    height: 50px;
+    cursor: pointer;
+}
+
 .board__date{
     display: flex;
     flex-direction: column;
@@ -156,6 +173,7 @@ body input{border:none}
     color: #54c791;
     margin-right:15px;
     transform: rotate(720deg);
+    cursor: pointer;
 }
 
         /* мини навигация */
@@ -187,5 +205,6 @@ body input{border:none}
     color: #ffffff;
     border-radius: 5px;
     font-size: 14px;
+    cursor: pointer;
 
 }

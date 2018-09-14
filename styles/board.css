@@ -151,6 +151,16 @@ body, html{
     font-size: 19px;
     flex-basis: 90%;
 }
+.task__name:hover{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    font-size: 19px;
+    flex-basis: 90%;
+    cursor: pointer;
+    color: #54c7a4;
+}
 
 /* стили инконки настройки задачи */
 
@@ -281,6 +291,7 @@ body, html{
     background: #54c791;
     color: #ffffff;
     font-size: 16px;
+    cursor: pointer;
 }
 
 

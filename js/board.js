@@ -1,5 +1,4 @@
 let boarddata = document.getElementById('board-data').innerHTML; /* Очень важная штука!!!!! */
-let path = '/get-task/'+boarddata;
 let colunmsContainer = document.getElementById('board__container-columns');
 
 let columnToDo = document.getElementsByClassName('column TO DO')[0];
@@ -9,24 +8,27 @@ let columnDone = document.getElementsByClassName('column Done')[0];
 let taskEditor = document.getElementById('board__task-editor');
 let board = document.getElementById('board');
 
-(()=>{ /* отрисовка настроек задачи */
-    let taskData = {
+let path =  `/get-task/${boarddata}`;
 
-    };
+function renderTaskSettings(){ /* отрисовка настроек задачи */
+    let taskData = {};
 
-    colunmsContainer.addEventListener('click',()=>{
-        if(!event.target.classList.contains('task__name')) return;
-        else{
-            var evTargetId = event.target.closest('.column-rows_task');
+    colunmsContainer.addEventListener('click' , (event) => {
+        event.stopPropagation();
+        if (!event.target.classList.contains('fa-cog')) {
+            return null
+        } else {
+            let evTargetId = event.target.closest('.column-rows_task');
+            let tast = {};
+
             taskData.id = evTargetId.id;
             taskEditor.style.cssText = "display:flex";
             xhr = new XMLHttpRequest();
-            xhr.open('GET', '/task/' + evTargetId.id, false);
+            xhr.open('GET', `/task/${evTargetId.id}`, false); 
             xhr.send();
-            let task = JSON.parse(xhr.responseText)[0][0];
-           console.log(task);
+            task = JSON.parse(xhr.responseText)[0][0];
 
-           taskEditor.innerHTML = `
+            taskEditor.innerHTML = `
                 <div>
                     <label for="">Имя задачи</label>
                     <input id="task-editor_name" type="text" value="${task.newtask_name}">
@@ -57,14 +59,17 @@ let board = document.getElementById('board');
         }
     });
     
-    taskEditor.addEventListener('click',()=>{ /* перезапись данных текущий задчи */
-        if(!event.target.classList.contains('send-data')) return;
-        else{
-            taskData.name = document.getElementById('task-editor_name').value;
-            taskData.discription = document.getElementById('task-editor_discriotion').value;
-            taskData.priority = document.getElementById('task-editor_priority').value;
-            taskData.label = document.getElementById('task-editor_label').value;
-            taskData.user = document.getElementById('task-editor_user').value;
+    taskEditor.addEventListener('click',() => { /* перезапись данных текущий задчи */
+        if (!event.target.classList.contains('send-data')) {
+            return null
+        } else {
+            const getElementValue = selector => (document.getElementById(selector) || {}).value;
+
+            taskData.name = getElementValue('task-editor_name'); 
+            taskData.discription = getElementValue(`task-editor_discriotion`);
+            taskData.priority = getElementValue(`task-editor_priority`);
+            taskData.label = getElementValue(`task-editor_label`);
+            taskData.user = getElementValue(`task-editor_user`);
             
             json = JSON.stringify(taskData);
             xhr = new XMLHttpRequest();
@@ -76,113 +81,54 @@ let board = document.getElementById('board');
         
         }
     }) 
-})();
+};
 
 
-(()=>{ /* При клике сквозь форму редактироания должна закрывать, но чт то не так */
-    while(taskEditor.style.display == "flex"){
-        board.addEventListener('click', ()=>{
-            /* event.target.closest('board__task-editor') == taskEditor ? null : taskEditor.style.cssText = "display:none"; */
-            console.log(event.target.tagName)
-       })
-    }
-})();
+function closeTaskSettings (){ /* При клике сквозь форму редактироания должна закрывать, но чтo то не так */
+    board.addEventListener('click', (event) => {
+        if ( !event.target.closest('.board__task-editor' ) ) {
+            taskEditor.style.cssText = "display:none";
+        }
+    })
+}; 
 
-
-
-(()=>{ /* Отрисовка задач */
+function renderTask(){ /* Отрисовка задач */
     xhr = new XMLHttpRequest();
     xhr.open('GET', '/get-task/' + boarddata, false);
     xhr.send();
 
     json = JSON.parse(xhr.responseText)[0];
     console.log(json);
-    filterTask1(json);
-    filterTask2(json);
-    filterTask3(json);
-        
-})();
+    filterTask(json,columnToDo,  'TO DO', 'todo');
+    filterTask(json, columnInProgress, 'In progress', 'inprogress' );
+    filterTask(json,columnDone, 'Done', 'done' );
+};
 
+function filterTask(arr, parent,  status, idPrefics){ 
 
-
-function filterTask1(arr){
-
-    columnToDo.status = "TO DO";
-    columnToDo.users = {};
-    todo = arr.filter((item)=>{ /* отфильтровал по колонкам */
-        return item.newtask_status == columnToDo.status;
-    })
-    todo.forEach(element => { /* отфильтровал пользователей в колонке */
-        var str = element.newtask_worker;
-        columnToDo.users[str] = true;
+    parent.status = status;
+    parent.users = {};
+    items = arr.filter((item) => item.newtask_status === parent.status)
+    items.forEach(element => { /* отфильтровал пользователей в колонке */
+        let str = element.newtask_worker;
+        parent.users[str] = true;
     });
-    for(key in columnToDo.users){
+    for(key in parent.users){
 
-        let idRow = 'todo'+ key;
-        createRows(key,idRow,columnToDo);
-        var rowrow = document.getElementById('idRow');
-        i = todo.filter((item)=>{ 
+        let idRow = idPrefics + key;
+        createRows(key,idRow,parent);
+        subItems = items.filter((item) => { 
             return item.newtask_worker == key;
         });
-        i.forEach(item=>{
+        subItems.forEach(item => {
            createTask(item.newtask_name, item.newtask_label, item.newtask_type, item.newtask_worker, item.newtask_status, item.newtask_priority, idRow, item.id_task) 
         })
         
     };
 };
 
-function filterTask2(arr){
-    columnInProgress.status = "In progress";
-    columnInProgress.users = {};
-    inprogress = arr.filter((item)=>{ /* отфильтровал по колонкам */
-        return item.newtask_status == columnInProgress.status;
-    })
-    inprogress.forEach(element => { /* отфильтровал пользователей в колонке */
-        var str = element.newtask_worker;
-        columnInProgress.users[str] = true;
-    });
-    for(key in columnInProgress.users){
-
-        let idRow = 'inprogress'+key;
-        createRows(key,idRow,columnInProgress);
-        // let rowrow = document.getElementById('idRow');
-        let i = inprogress.filter((item)=>{ 
-            return item.newtask_worker == key;
-        });
-        i.forEach(item=>{
-           createTask(item.newtask_name, item.newtask_label, item.newtask_type, item.newtask_worker, item.newtask_status, item.newtask_priority, idRow, item.id_task)
-        })
-        
-    };
-};
-
-function filterTask3(arr){
-    columnDone.status = "Done";
-    columnDone.users = {};
-    done = arr.filter((item)=>{ /* отфильтровал по колонкам */
-        return item.newtask_status == columnDone.status;
-    })
-    done.forEach(element => { /* отфильтровал пользователей в колонке */
-        var str = element.newtask_worker;
-        columnDone.users[str] = true;
-    });
-    for(key in columnDone.users){
-
-        let idRow = 'done'+key;
-        createRows(key,idRow,columnDone);
-        var rowrow = document.getElementById('idRow');
-        i = done.filter((item)=>{ 
-            return item.newtask_worker == key;
-        });
-        i.forEach(item=>{
-           createTask(item.newtask_name, item.newtask_label, item.newtask_type, item.newtask_worker, item.newtask_status, item.newtask_priority, idRow, item.id_task)
-        })
-        
-    };
-};
-
 function createTask(name, label, type, userIconContent, status, priority, parent, id_task){
-    var rowrow = document.getElementById(parent);
+    let rowrow = document.getElementById(parent);
 
     let task = document.createElement('div');    
     task.className = "column-rows_task";
@@ -196,16 +142,15 @@ function createTask(name, label, type, userIconContent, status, priority, parent
     taskBody.className = 'column-rows_task-body';
 
     switch(priority){
-        case 'Высокий': taskPriority.style.background = '#eb5a46';break;
-        case 'Средний' : taskPriority.style.background = '#ffab4a';break;
-        case 'Низкий' : taskPriority.style.background = '#61bd4f';break;
+        case 'Высокий': taskPriority.style.background = '#eb5a46'; break;
+        case 'Средний': taskPriority.style.background = '#ffab4a'; break;
+        case 'Низкий': taskPriority.style.background = '#61bd4f'; break;
+        default: break;
     };
 
-    let iconContant = userIconContent.split(' ').reduce(function(previousValue, currentValue){
-        let a = previousValue.slice(0,1).toUpperCase();
-        let b = currentValue.slice(0,1).toUpperCase();
-        return a+b;
-    });
+    let iconContant = userIconContent.split(' ');
+    let [userNaame, userLastname] = iconContant;
+    let abbreviature = (userNaame[0] + userLastname[0]).toUpperCase();
    
    
     taskBody.innerHTML = `
@@ -222,7 +167,7 @@ function createTask(name, label, type, userIconContent, status, priority, parent
                 <span>Тип задачи:${type}</span>
             </div>
             <div class="task__user-icon">
-                ${iconContant}
+                ${abbreviature}
             </div>`;
 
         task.prepend(taskPriority);
@@ -247,7 +192,11 @@ function createRows(userIconContent,id,parent){
     return rows;
 };
 
-
+function init(){
+    renderTaskSettings();
+    closeTaskSettings();
+    renderTask();
+}; init();
 
 
 

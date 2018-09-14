@@ -4,41 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Настройки доски</title>
     <link rel="stylesheet" href="../styles/settings.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>
     <div id="board">
-        <div id="board__container-columns">
-            <div class="column TO DO"> 
-                <div class="column-name">
-                    <span>TO DO</span>
+        <div id="board__content">
+                <div " id="filter-container">
+                    
                 </div>
-                    <div class="column-rows">
+            <div id="board__container-columns">
+                <div class="column TO DO"> 
+                    <div class="column-name">
+                        <span class="status">TO DO</span>
+                    </div>
+                        <div class="column-rows">
+                    </div>
                 </div>
-            </div>
-            <div class="column In progress"> 
-                <div class="column-name">
-                    <span>In progress</span>
+                <div class="column In progress"> 
+                    <div class="column-name">
+                        <span class="status">In progress</span>
+                    </div>
+                    
                 </div>
-                
-            </div>
-            <div class="column Done"> 
-                <div class="column-name">
-                    <span>Done</span>
+                <div class="column Done"> 
+                    <div class="column-name">
+                        <span class="status">Done</span>
+                    </div>
+                    
                 </div>
                 
             </div>
             
-           
-        <!-- </div>
-            <div class="board__task-editor" id="board__task-editor">
-        </div> -->
+            
+        </div>
+        <div id="board__navbar" > <!-- нижняя навигация -->
+            <input id="navbar__add-column" type="button" value="Добавить колонку">
+            <input id="board__add-filter-formr" type="button" value="Добавить фильтр">
+            <input id="board__remove-filter" type="button" value="Удалить фильтр">
+        </div>
 
+        <div id="board__add-colunm-form"> <!-- форма отправки -->
+            <div id="add-colunm-form__container">
+                <input id="add-colunm-form__column-name" type="text" placeholder="Введите название будущей колонки">
+                <input id="add-colunm-form__create-form__column" type="button" value="Добавить колонку">
+            </div>
+        </div>
 
+        <div id="board__add-filter-form">
+            <div id="add-filter-form__container">
+                <span>Выберите категорию фильтра</span>
+                <select  id="choice-filter" >
+                        <option selected">Выберите из списка</option>
+                        <option value="Имя">Имя</option>
+                        <option value="Статус">Статус</option>
+                        <option value="Приоритет">Приоритет</option>
+                        <option value="Метка">Метка</option>
+                        <option value="Тип">Тип</option>
+                </select>
+                <span id="sub-fIlter"></span>
+                <input id="add-filter-form__create-filter" type="button" value="Добавить фильр">
+            </div>
+        </div>
+        
         <span id="board-data"><%=id%></span>  <!-- НЕ УДАЛЯЙ, ИНФА ПО ДОСКЕ -->
     </div>
+    
     
 
     <script src="../js/settings.js"></script>

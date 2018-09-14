@@ -24,7 +24,7 @@ body, html{
 
 #board{
     display: flex;
-    flex-direction: row; 
+    flex-direction: column; 
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: flex-start;
@@ -32,6 +32,104 @@ body, html{
     height: 100%;
     background: #ffffff;
 }
+
+            /* стили контейнера контента */
+#board__content{
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    width: 100%;
+}
+            /* Стили формы для добавления фальтра */
+
+#board__add-filter-form{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+}
+
+#add-filter-form__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    /* height: 120px; */
+    width: 300px;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    background: #ffffff;  
+}
+#add-filter-form__container span{
+    margin: 10px 0 5px 0; 
+}
+
+#add-filter-form__container select{
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    margin: 15px 0 5px 0; 
+}
+
+#add-filter-form__container input{
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    margin: 15px 0 5px 0; 
+}
+
+#add-filter-form__container input[type="button"]{
+    margin: 10px 0;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    background: #54c7c3;
+    color: #ffffff;
+}
+
+            /* стили контейнера для фильтров */
+
+#filter-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100%;
+    /* padding: 4px; */
+    border-bottom: 1px solid #d4d4d4;
+}
+
+    /* стили конкретного фильтра */     
+
+#filter-container span{
+    margin: 8px 5px;
+    padding: 5px;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    text-align: center; 
+} 
+
+#filter-container span:hover{
+    margin: 8px 5px;
+    padding: 5px;
+    border: 1px solid #54c7c3;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}   
 
         /* стили контейнера колонок */
 
@@ -95,7 +193,7 @@ body, html{
 }
 
 
-        /* стили корпуса задачи */
+    /* стили корпуса задачи */
 
 .column-rows_task{
     display: flex;
@@ -107,7 +205,7 @@ body, html{
     background: #ffffff;
 } 
 
-        /* стили тела задачи */
+    /* стили тела задачи */
 
 .column-rows_task-body{
     display: flex;
@@ -124,7 +222,7 @@ body, html{
     /* height: 300px; */
 } 
 
-        /* стили приоретета */
+    /* стили приоретета */
 
 .column-rows_task-priority{
     width: 6px;
@@ -135,7 +233,7 @@ body, html{
 
 }
 
-        /* стили имени задачи */
+    /* стили имени задачи */
 
 .task__name-and-sets{
     display: flex;
@@ -170,9 +268,10 @@ body, html{
     font-size: 17px;
     color: #54c7a4;
     transform: rotate(720deg);
+    cursor: pointer;
 }
 
-        /* стили меок задачи */
+    /* стили меок задачи */
 
 .task__label{
     display: flex;
@@ -182,7 +281,7 @@ body, html{
     height: 30px;
 }
 
-        /* стили типов задачи */
+    /* стили типов задачи */
 
 .task__type{
     display: flex;
@@ -192,14 +291,12 @@ body, html{
     height: 30px;
 }
 
-        /* Стили работника ботающего над задачей */
+    /* Стили работника ботающего над задачей */
 
 .task__user{
     padding: 10px;
     
 }
-
-
 
 .task__user-icon{
     display: flex;
@@ -215,74 +312,87 @@ body, html{
 }
 
 
-            /*  Стили редактироания задачи */
+            /*  Стили редактироания доски */
 
-#board__task-editor{
-    display: none;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    align-self: center;
-    width: 340px; 
-    flex-basis: 15%;
-    border: 1px solid #d4d4d4;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-
-
-}
-
-#board__task-editor label{
-    margin-bottom: 5px;
-}
-
-#board__task-editor div{
+#board__navbar{
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    padding: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100%;
+    flex-basis: 5%;
+    background: #ffffff;
+    border-top: 1px solid #d4d4d4;
 }
 
-#board__task-editor input{
-    border: 1px solid black; 
-    height: 20px;
-    flex-basis: 100%;
-    padding: 0 10px;
+#board__navbar input{
     height: 30px;
-    border: 1px solid #d4d4d4;
-    border-radius: 5px;
-}
-
-#board__task-editor select{
-    border: 1px solid #d4d4d4;
-    border-radius: 5px; 
-    height: 30px; 
-}
-
-#board__task-editor textarea{
-    resize: none;
-    border: 1px solid #d4d4d4;
-    border-radius: 5px;
-    padding: 5px;
-}
-#board__task-editor button{
-    margin: 10px;
-    height: 30px;
-    border-radius: 5px;
-    background: #54c7a4;
+    margin-left: 10px;
+    background: #54c7c3;
     color: #ffffff;
-    font-size: 16px;
-}
-
-#board__task-editor button:hover{
-    margin: 10px;
-    height: 30px;
     border-radius: 5px;
+    font-size: 14px;
+
+}
+#board__navbar input:hover{
+    height: 30px;
+    margin-left: 10px;
     background: #54c791;
     color: #ffffff;
-    font-size: 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+
 }
 
+                /* Стили фомы добавления колонки на доску */
+
+
+#board__add-colunm-form{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    background: #ffffff;
+    height: 100%;
+}
+
+#add-colunm-form__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 120px;
+    width: 300px;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    background: #ffffff;
+
+}
+
+        /* форма имени будщей колнки */
+
+#add-colunm-form__column-name{ 
+    text-align: center;
+    border: 1px solid #d4d4d4;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+}
+
+        /* создание колнки */
+
+#add-colunm-form__create-form__column{ 
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    background: #54c7c3;
+    color: #ffffff;
+} 
 
 
 
